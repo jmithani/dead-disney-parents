@@ -2,40 +2,146 @@
 <html>
 
 <head>
-  <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+  <script type="text/javascript" src="http://d3js.org/d3.v4.min.js"></script>
+  <script type="text/javascript" src="https://d3js.org/d3-ease.v1.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Karla|Source+Serif+Pro" rel="stylesheet">
   <!-- <script type="text/javascript" src="js/part1.js"></script> -->
 </head>
 
 <style>
+
+  body {
+    background-color: #FFCCFF;
+  }
+
+  .container {
+    margin: 5% 10% 5% 10%;
+  }
+
+  .header-image {
+    text-align: center;
+  }
+
+  .header-image img {
+    width: 25%;
+    height: auto;
+    /*height: %;
+    width: 75%;*/
+  }
+
+  /***** Title *****/
+
+  .title {
+    text-align: center;
+    color: #333333;
+    margin: 0 5% 5% 5%;
+  }
+
+  .title .article-title {
+    font-family: 'Source Serif Pro', serif;
+    font-size: 4.5em;
+  }
+
+  .title .article-subtitle {
+    font-family: 'Karla', 'sans serif';
+    font-size: 2em;
+  }
+
+  .title .author {
+    font-family: 'Source Serif Pro', serif;
+    font-size: 1.5em;
+    padding-top: 0.25em;
+  }
+
+  /***** Section *****/
+  section .step p {
+      font-family: 'Karla', sans-serif;
+      font-size: 1em;
+      line-height: 1.25;
+  }
+
+  #quote {
+    margin-left: 10%;
+    margin-right: 10%;
+    text-align: left;
+    font-family: 'Source Serif Pro', serif;
+    color: #333333;
+    font-size: 1.25em;
+  }
+
+  #attribution {
+    text-align: right;
+  }
+
+
   .graph {
-    margin-bottom: 200px;
+    margin-bottom: 0;
   }
 </style>
 
 <body>
+  <div class="container"> <!-- 10% margins for entire project -->
 
-  <div id="viz1" class="graph"></div>
-  <div id="viz2" class="graph"></div>
+    <div class="header-image">
+      <img src="mice.png"></img>
+    </div>
+
+    <div class="title">
+      <div class="article-title">Dead Disney Parents</div>
+      <div class="article-subtitle">Exploring the high rate of parental demise and unexplained absence in Disney&#39;s animated films</div>
+      <strong>_________________________________________</strong>
+      <div class="author">Jasmine Mithani</div>
+    </div class="title">
+
+    <section class="step" id="quote">
+      &ldquo;Disney taught us that, &lsquo;when you wish upon a star, your dreams come true.&rsquo;
+      Unfortunately, if your dream is to have both of your parents live to see you succeed, you&#39;re sheer out of luck.&rdquo;
+      <div id="attribution">Marc Oromaner</div>
+    </section>
+
+    <section class="step" id="films">
+
+      <!-- <div id="viz1" class="graph" align="center"></div>
+      <div id="viz2" class="graph" align="center"></div> -->
+
+    </section>
+
+    <section class="step" id="missing-vs-dead">
+    </section>
+
+    <section class="step" id="onscreen-deaths">
+    </section>
+
+    <section iclass="step" d="plucky-orphans">
+    </section>
+
+    <section iclass="step" d="gender">
+    </section>
+
+    <section class="step" id="era">
+    </section>
+
+  </div class="container">
 
   <script>
 
-  var makeSquares = function(csv, width, height)
+  var width = 1000;
+  var height = 300;
 
-  var allFilms = function() {
+  var squareSize = 10;
+  var padding = 2;
 
-    var svg = d3.select("#viz1")
-    .append("svg")
-    .attr("width", width)
-    .attr("height", height);
+  var color = "purple";
 
-    d3.csv("csv/all_films.csv", function(data) {
+  var makeSquares = function(svg, csv, width, height, squareSize, padding, color) {
+    d3.csv(csv, function(data) {
       //console.log(data);
       dataset = data;
 
       var numberFilms = dataset.length;
       //console.log(numberFilms);
 
-      var scale = d3.scale.linear()
+      var scale = d3.scaleLinear()
       .domain([0, numberFilms])
       .range([50, width]);
 
@@ -45,9 +151,8 @@
       .append("rect")
       .attr("height", squareSize)
       .attr("width", squareSize)
-      .attr("fill", "purple")
-      .attr("stroke", "white")
-      .attr("y", 300)
+      .attr("fill", color)
+      .attr("y", 100) // need to fix this to not be hardcoded
       .attr("x", function(d, i) {
         return scale(i);
       })
@@ -61,7 +166,7 @@
         svg.append("text")
         .attr("id", "tooltip")
         .attr("x", x)
-        .attr("y", y)
+        .attr("y", y-20) // if y is switched to a percentage that this is NaN
         .attr("text-anchor", "middle")
         .attr("font-family", "sans-serif")
         .attr("font-size", "12px")
@@ -73,10 +178,43 @@
     });
   };
 
-  var missingParentsFilms = function() {
+  var allFilms = function() {
+    var svg = d3.select("#viz1")
+    .append("svg")
+    .attr("width", width)
+    .attr("height", height);
 
+    makeSquares(svg, '/csv/all_films.csv', width, height, squareSize, padding, color);
+  };
+
+  var missingParentsFilms = function() {
+    var svg = d3.select("#viz2")
+    .append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+    makeSquares(svg, '/csv/parent_deaths.csv', width, height, squareSize, padding, color);
   }
 
   allFilms();
+  missingParentsFilms();
+
+  // d3.select("svg")
+  //   .on("click", function(d) {
+  //     d3.select("svg")
+  //       .transition()
+  //       .duration(1000)
+  //       .ease(d)
+  //       .remove();
+  //
+  //     d3.select("#viz1")
+  //       .transition()
+  //       .duration(1000)
+  //       .ease(d)
+  //       .call(missingParentsFilms);
+  //   });
+
+
+  //missingParentsFilms();
 
   </script>
