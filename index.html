@@ -29,12 +29,20 @@
     width: 75%;*/
   }
 
+  .image {
+    background-image: url("/img/mouse-01.png");
+    background-repeat: no-repeat;
+    /*display: inline-block;*/
+    height: 20px;
+    width: 20px;
+  }
+
   /***** Title *****/
 
   .title {
     text-align: center;
     color: #333333;
-    margin: 0 5% 5% 5%;
+    margin: 2% 5% 5% 5%;
   }
 
   .title .article-title {
@@ -54,28 +62,52 @@
   }
 
   /***** Section *****/
-  section .step p {
-      font-family: 'Karla', sans-serif;
-      font-size: 1em;
-      line-height: 1.25;
+  p {
+      margin-left: 5%;
+      margin-right: 5%;
+      font-family: 'Source Serif Pro', serif;
+      font-size: 1.25em;
+      line-height: 1.5;
+      color: #333333;
   }
 
   #quote {
     margin-left: 10%;
     margin-right: 10%;
     text-align: left;
-    font-family: 'Source Serif Pro', serif;
+    font-family: 'Karla', sans-serif;
     color: #333333;
-    font-size: 1.25em;
+    font-size: 1.4em;
+    line-height: 1.5em;
+    font-style: italic;
   }
 
   #attribution {
     text-align: right;
+    font-style: normal;
+    margin-right: 0;
   }
 
+  /***** Graph stand-ins *****/
+
+  section #films .step .wrap {
+    text-align: center;
+  }
+
+  .wrap {
+    text-align: center;
+    float: right;
+  }
+
+  #number {
+    display: inline-block;
+  }
 
   .graph {
-    margin-bottom: 0;
+    height: 600px;
+    width: 700px;
+    background-color: white;
+    display: inline-block;
   }
 </style>
 
@@ -96,10 +128,33 @@
     <section class="step" id="quote">
       &ldquo;Disney taught us that, &lsquo;when you wish upon a star, your dreams come true.&rsquo;
       Unfortunately, if your dream is to have both of your parents live to see you succeed, you&#39;re sheer out of luck.&rdquo;
-      <div id="attribution">Marc Oromaner</div>
+      <div id="attribution">-- Marc Oromaner</div>
     </section>
 
+    <section class="step">
+      <p>Bambi&#39;s mom, heartlessly shot by a hunter. Marlin watching his wife and all but one of their fish eggs be
+        eaten by a barracuda. Disney movies tug at the heartstrings, but not just because they end with a warming
+        happily ever after. The animation studio continues to traumatize each generation with tales of parental absence.
+        Many of Disney&#39;s animated films hinge on the premise of a missing parent -- either mysteriously missing from the
+        protagonist&#39;s life, confirmed to have passed away, or in 14 cases, actually killed on screen.
+      </p>
+      <p>Previous articles have explored the abundance of Disney&#39;s child protagonists lacking one or more parents, but
+        there hasn&#39;t been a comprehensive breakdown of which films are missing parents. Starting from a corpus of Walt
+        Disney Animation Studio&#39;s theatrical releases, I sought to answer once and for all to what extent the stereotype
+        of missing parents applied.
+      </p>
+    </section>
+
+    <div id="graph"></div>
+
     <section class="step" id="films">
+
+      <div id="number"></div>
+
+      <!-- <div class="wrap">
+        <div id="graph"></div>
+      </div> -->
+
 
       <!-- <div id="viz1" class="graph" align="center"></div>
       <div id="viz2" class="graph" align="center"></div> -->
@@ -122,8 +177,10 @@
     </section>
 
   </div class="container">
+  <script type="text/javascript" src="js/part1.js"></script>
+</html>
+  <!-- /*
 
-  <script>
 
   var width = 1000;
   var height = 300;
@@ -216,5 +273,4 @@
 
 
   //missingParentsFilms();
-
-  </script>
+*/ -->

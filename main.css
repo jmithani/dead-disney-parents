@@ -1,0 +1,100 @@
+/* <link rel="stylesheets" type="text/css" href="main.css"></link> */
+
+  body {
+    background-color: #FFCCFF;
+  }
+
+  .container {
+    margin: 5% 10% 5% 10%;
+  }
+
+  .header-image {
+    text-align: center;
+  }
+
+  .header-image img {
+    width: 25%;
+    height: auto;
+    /*height: %;
+    width: 75%;*/
+  }
+
+  .image {
+    background-image: url('/img/mouse-01.png');
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+  }
+
+  /***** Title *****/
+
+  .title {
+    text-align: center;
+    color: #333333;
+    margin: 2% 5% 5% 5%;
+  }
+
+  .title .article-title {
+    font-family: 'Source Serif Pro', serif;
+    font-size: 4.5em;
+  }
+
+  .title .article-subtitle {
+    font-family: 'Karla', 'sans serif';
+    font-size: 2em;
+  }
+
+  .title .author {
+    font-family: 'Source Serif Pro', serif;
+    font-size: 1.5em;
+    padding-top: 0.25em;
+  }
+
+  /***** Section *****/
+  p {
+      margin-left: 5%;
+      margin-right: 5%;
+      font-family: 'Source Serif Pro', serif;
+      font-size: 1.25em;
+      line-height: 1.5;
+      color: #333333;
+  }
+
+  #quote {
+    margin-left: 10%;
+    margin-right: 10%;
+    text-align: left;
+    font-family: 'Karla', sans-serif;
+    color: #333333;
+    font-size: 1.4em;
+    line-height: 1.5em;
+    font-style: italic;
+  }
+
+  #attribution {
+    text-align: right;
+    font-style: normal;
+    margin-right: 0;
+  }
+
+  /***** Graph stand-ins *****/
+
+  section #films .step .wrap {
+    text-align: center;
+  }
+
+  .wrap {
+    text-align: center;
+    float: right;
+  }
+
+  #number {
+    display: inline-block;
+  }
+
+  .graph {
+    height: 600px;
+    width: 700px;
+    background-color: white;
+    display: inline-block;
+  }
