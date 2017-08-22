@@ -1,7 +1,7 @@
 var width = 800;
 var height = 600;
 
-var mouseSize = 20;
+var mouseSize = 50;
 var mousePadding = 2;
 var rowLen = 10; // how many mice per row
 
@@ -19,16 +19,17 @@ var rect = svg.append("rect")
 
 d3.csv("../csv/all_films_nosequels.csv", function(data) {
 
-  console.log(data);
+  //console.log(data);
 
   var miceData = makeObjects(data);
-  console.log(miceData);
+  //console.log(miceData);
 
   svg.selectAll(".mouse")
     .data(miceData)
     .enter()
-    .append("rect")
+    .append("image")
     .classed("image", true)
+    .attr("href", "/img/mouse-01.png")
     .attr("height", mouseSize)
     .attr("width", mouseSize)
     .attr("x", function(d) { return d.x; })
@@ -37,6 +38,7 @@ d3.csv("../csv/all_films_nosequels.csv", function(data) {
 
 function makeObjects(dataset) {
   //console.log(data);
+  //console.log(rowLen);
 
   return dataset.map(function(d, i) {
     //console.log(d);
@@ -60,9 +62,11 @@ function makeObjects(dataset) {
         return false;
       }
     }; // bool
+    //console.log("rowLen");
+    //console.log(rowLen);
     d.x = (i % rowLen) * (mouseSize + mousePadding); // int
     //console.log(d.x);
-    d.y = Math.floor(i / (mouseSize + mousePadding)) * (mouseSize + mousePadding); // int
+    d.y = Math.floor(i / rowLen) * (mouseSize + mousePadding); // int
     return d; // new object
     //console.log(d.y);
   });

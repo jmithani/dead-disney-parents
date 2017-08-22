@@ -21,6 +21,7 @@
 
   .image {
     background-image: url('/img/mouse-01.png');
+    background-size: cover;
     display: inline-block;
     height: 20px;
     width: 20px;
