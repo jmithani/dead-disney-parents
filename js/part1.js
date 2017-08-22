@@ -1,26 +1,39 @@
+/***** Global variables *****/
+
 var width = 800;
 var height = 600;
 
 var mouseSize = 50;
-var mousePadding = 2;
+var mousePadding = 10;
 var rowLen = 10; // how many mice per row
 
 var svg = d3.select("#graph")
             .append("svg")
             .attr("width", width)
             .attr("height", height);
-/*
-var rect = svg.append("rect")
-            .attr("height", squareSize)
-            .attr("width", squareSize)
-            .attr("x", 10)
-            .attr("y", 10);
-            */
 
+var buttons = [{ "name": "mom", "count": 30, "desc": "of films have a missing mother" },
+               { "name": "dad", "count": 20, "desc": "of films have a missing father"  },
+               { "name": "both", "count": 20, "desc": "of films have neither parent present" }];
+
+var btns = d3.select("#controls").selectAll("button")
+  .data(buttons)
+  .enter()
+  .append("button")
+  .attr("height", 70)
+  .attr("width", 200)
+  .text( function(d, i) {
+    return d.name;
+  });
+
+  btns.on("click", updateSide);
+
+/***** Reading in CSV data in order to make mice grid *****/
 d3.csv("../csv/all_films_nosequels.csv", function(data) {
 
-  //console.log(data);
+  console.log(data);
 
+  // Refining data into an object
   var miceData = makeObjects(data);
   //console.log(miceData);
 
@@ -29,47 +42,41 @@ d3.csv("../csv/all_films_nosequels.csv", function(data) {
     .enter()
     .append("image")
     .classed("image", true)
-    .attr("href", "/img/mouse-01.png")
+    .attr("href", "/img/mouse.svg")
     .attr("height", mouseSize)
     .attr("width", mouseSize)
     .attr("x", function(d) { return d.x; })
     .attr("y", function(d) { return d.y; });
 });
 
+// Function to format raw data set into objects
 function makeObjects(dataset) {
-  //console.log(data);
-  //console.log(rowLen);
+  //console.log(dataset);
 
   return dataset.map(function(d, i) {
-    //console.log(d);
-    //console.log(i);
+    // keeping date as a string right now, d.release_date
     d.title = d.title; // string
-    d.date = d.date; // keeping as a string right now
     d.studio = d.studio; // string
-    d.mom = function(d) {
-      if (d.mom === 1) {
-        return true;
-      }
-      else {
-        return false;
-      }
-    }; // bool
-    d.dad = function(d) {
-      if (d.dad === 1) {
-        return true;
-      }
-      else {
-        return false;
-      }
-    }; // bool
-    //console.log("rowLen");
-    //console.log(rowLen);
+
+    d.mom = (+d.mom === 1) ? true : false; // bool
+    d.dad = (+d.dad === 1) ? true : false; // bool
+
     d.x = (i % rowLen) * (mouseSize + mousePadding); // int
-    //console.log(d.x);
     d.y = Math.floor(i / rowLen) * (mouseSize + mousePadding); // int
     return d; // new object
-    //console.log(d.y);
   });
 }
 
-// var squares = svg.selectAll("rect")
+/***** Functions for button filtering *****/
+
+// Function to change the text of the sidebar
+function updateSide(d) {
+  
+  var elDesc = document.getElementById("description");
+  var elCount = document.getElementById("count");
+  elCount.innerHTML = d.count;
+  elDesc.innerHTML = d.desc;
+
+}
+
+// Function to update the mice color based on the

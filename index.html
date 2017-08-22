@@ -88,27 +88,44 @@
     margin-right: 0;
   }
 
-  /***** Graph stand-ins *****/
+  /***** Films filtering graph *****/
 
-  section #films .step .wrap {
+  .center-wrap {
     text-align: center;
+    display: inline;
   }
 
-  .wrap {
+  section #films .step {
     text-align: center;
-    float: right;
+    /*display: inline-block;*/
+  }
+
+  #controls {
+    text-align: center;
   }
 
   #number {
     display: inline-block;
+    float: left;
+    /*position: relative;*/
   }
 
-  .graph {
-    height: 600px;
-    width: 700px;
-    background-color: white;
-    display: inline-block;
+  #count {
+    font-size: 2em;
+    color: #FF00CC;
   }
+
+  #count, #description {
+    text-align: right;
+    display: inline;
+    font-family: "Karla", sans-serif;
+  }
+
+  #graph {
+    display: inline-block;
+    float: right;
+  }
+
 </style>
 
 <body>
@@ -145,19 +162,20 @@
       </p>
     </section>
 
-    <div id="graph"></div>
-
     <section class="step" id="films">
+      <div id="controls">
+        <!-- <button>Dead Mom</button>
+        <button>Dead Dad</button>
+        <button>Both Dead</button> -->
+      </div>
 
-      <div id="number"></div>
-
-      <!-- <div class="wrap">
+      <div class="center-wrap">
+        <div id="number">
+          <div id="count">72</div>
+          <div id="description">of films are missing at least one parent</div>
+        </div>
         <div id="graph"></div>
-      </div> -->
-
-
-      <!-- <div id="viz1" class="graph" align="center"></div>
-      <div id="viz2" class="graph" align="center"></div> -->
+      </div>
 
     </section>
 
@@ -179,98 +197,3 @@
   </div class="container">
   <script type="text/javascript" src="js/part1.js"></script>
 </html>
-  <!-- /*
-
-
-  var width = 1000;
-  var height = 300;
-
-  var squareSize = 10;
-  var padding = 2;
-
-  var color = "purple";
-
-  var makeSquares = function(svg, csv, width, height, squareSize, padding, color) {
-    d3.csv(csv, function(data) {
-      //console.log(data);
-      dataset = data;
-
-      var numberFilms = dataset.length;
-      //console.log(numberFilms);
-
-      var scale = d3.scaleLinear()
-      .domain([0, numberFilms])
-      .range([50, width]);
-
-      svg.selectAll("rect")
-      .data(dataset)
-      .enter()
-      .append("rect")
-      .attr("height", squareSize)
-      .attr("width", squareSize)
-      .attr("fill", color)
-      .attr("y", 100) // need to fix this to not be hardcoded
-      .attr("x", function(d, i) {
-        return scale(i);
-      })
-      .attr("transform", "translate(" + padding + ")")
-      .on("mouseover", function(d) {
-        var x = d3.select(this).attr("x") + (squareSize / 2);
-        var y = d3.select(this).attr("y") * 1.1;
-        //console.log(x);
-        //console.log(y);
-
-        svg.append("text")
-        .attr("id", "tooltip")
-        .attr("x", x)
-        .attr("y", y-20) // if y is switched to a percentage that this is NaN
-        .attr("text-anchor", "middle")
-        .attr("font-family", "sans-serif")
-        .attr("font-size", "12px")
-        .text(d.title);
-      })
-      .on("mouseout", function(d) {
-        d3.select("#tooltip").remove();
-      });
-    });
-  };
-
-  var allFilms = function() {
-    var svg = d3.select("#viz1")
-    .append("svg")
-    .attr("width", width)
-    .attr("height", height);
-
-    makeSquares(svg, '/csv/all_films.csv', width, height, squareSize, padding, color);
-  };
-
-  var missingParentsFilms = function() {
-    var svg = d3.select("#viz2")
-    .append("svg")
-    .attr("width", width)
-    .attr("height", height);
-
-    makeSquares(svg, '/csv/parent_deaths.csv', width, height, squareSize, padding, color);
-  }
-
-  allFilms();
-  missingParentsFilms();
-
-  // d3.select("svg")
-  //   .on("click", function(d) {
-  //     d3.select("svg")
-  //       .transition()
-  //       .duration(1000)
-  //       .ease(d)
-  //       .remove();
-  //
-  //     d3.select("#viz1")
-  //       .transition()
-  //       .duration(1000)
-  //       .ease(d)
-  //       .call(missingParentsFilms);
-  //   });
-
-
-  //missingParentsFilms();
-*/ -->
