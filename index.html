@@ -16,7 +16,7 @@ body {
 }
 
 .container {
-  margin: 5% 10% 5% 10%;
+  margin: 5% 10% 5% 13%;
 }
 
 .header-image {
@@ -90,7 +90,8 @@ p {
 
 .center-wrap {
   text-align: center;
-  display: inline;
+  display: inline-block;
+  margin-left: 5%;
 }
 
 #films .step {
@@ -164,6 +165,7 @@ p {
 
 #graph {
   display: grid;
+  margin-bottom: 2%;
 }
 
 /****** CAUSE OF DEATH STYLING *****/
@@ -287,16 +289,24 @@ p {
 
       <div class="center-wrap">
         <div id="number">
-          <div id="count">72</div>
-          <div id="description">of films are missing at least one parent</div>
+          <div id="count">34</div>
+          <div id="description">films are missing at least one parent out of 59 total</div>
         </div>
         <div id="graph"></div>
       </div>
     </div>
 
     <div class="step" id="causes">
-      <p>How did they die?</p>
-      <div id="cycle"></div>
+      <p>Out of 57 missing parents from 34 movies, 29 are confirmed deceased and 28 have no specific explanation
+        for their absence. Those 28 are a mix of characters where one parent is prominently featured while the
+        other is absent (Remy, Ratatouille, 2007) or where the character is presented as an orphan (Taran,
+        The Black Cauldron, 1985). The exceptions are Jim&#39;s father in Treasure Planet (2002), who is said to
+        have left the family many years prior to the start of the film, and Aladar&#39;s mother in Dinosaur (2000),
+        who was forced to abandon her eggs after a vicious attack from a local carnivore.</p>
+      <p>So, how did they die?</p>
+      <div class="cycle-wrap">
+        <div id="cycle"></div>
+      </div>
     </div>
 
     <div class="step" id="onscreen-deaths">

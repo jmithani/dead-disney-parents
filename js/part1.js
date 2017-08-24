@@ -1,20 +1,19 @@
 /***** Global variables *****/
-
-var width = 800;
-var height = 600;
-
 var mouseSize = 50;
 var mousePadding = 10;
 var rowLen = 10; // how many mice per row
+
+var width = (mouseSize + mousePadding) * rowLen;
+var height = (mouseSize + mousePadding) * 6; // i am doing this only because i know there will be < 10 rows
 
 var svg = d3.select("#graph")
             .append("svg")
             .attr("width", width)
             .attr("height", height);
 
-var buttons = [{ "name": "mom", "count": 30, "desc": "of films have a missing mother" },
-               { "name": "dad", "count": 23, "desc": "of films have a missing father"  },
-               { "name": "both", "count": 15, "desc": "of films have neither parent present" }];
+var buttons = [{ "name": "mom", "count": 30, "desc": "films have a missing mother" },
+               { "name": "dad", "count": 23, "desc": "films have a missing father"  },
+               { "name": "both", "count": 15, "desc": "films have neither parent present" }];
 
 d3.select("#controls").selectAll("button")
   .data(buttons)
