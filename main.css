@@ -99,3 +99,23 @@
     background-color: white;
     display: inline-block;
   }
+
+  /***** CAROUSEL STYLE *****/
+#myCarousel {
+  margin-top: 40px;
+}
+
+.carousel-linked-nav,
+.item img {
+  display: block;
+  margin: 0 auto;
+}
+
+.carousel-linked-nav {
+  width: 120px;
+  margin-bottom: 20px;
+}
+
+.carousel-control {
+  top: 0;
+}

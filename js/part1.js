@@ -109,13 +109,17 @@ function updateSide(d) {
 
 // Function to update the mice color based on the button clicked
 function updateMice(d) {
+  
   // Right now, .active isn't mapped to anything, it's for debugging
 
   var opacity = 0.3;
+  var duration = 300;
   console.log("updating mice");
 
   d3.selectAll(".mouse")
     .classed("active", false)
+    .transition()
+    .duration(100)
     .attr("href", "/img/mouse.svg")
     .attr("opacity", opacity);
 
@@ -124,6 +128,8 @@ function updateMice(d) {
       console.log("matched both");
       d3.selectAll(".both")
         .classed("active", true)
+        .transition()
+        .duration(duration)
         .attr("opacity", 1)
         .attr("href", "/img/mouse-pink.svg");
       break;
@@ -132,6 +138,8 @@ function updateMice(d) {
       console.log("matched mom");
       d3.selectAll(".mom-dead")
         .classed("active", true)
+        .transition()
+        .duration(duration)
         .attr("opacity", 1)
         .attr("href", "/img/mouse-pink.svg");
       break;
@@ -140,6 +148,8 @@ function updateMice(d) {
       console.log("matched dad");
       d3.selectAll(".dad-dead")
         .classed("active", true)
+        .transition()
+        .duration(duration)
         .attr("opacity", 1)
         .attr("href", "/img/mouse-pink.svg");
       break;

@@ -5,6 +5,7 @@
   <script type="text/javascript" src="http://d3js.org/d3.v4.min.js"></script>
   <script type="text/javascript" src="https://d3js.org/d3-ease.v1.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Karla|Source+Serif+Pro" rel="stylesheet">
+  <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.0.4/css/bootstrap-combined.min.css" rel="stylesheet" >
   <!-- <script type="text/javascript" src="js/part1.js"></script> -->
 </head>
 
@@ -53,7 +54,6 @@
     padding-top: 0.25em;
   }
 
-  /***** Section *****/
   p {
       margin-left: 5%;
       margin-right: 5%;
@@ -62,6 +62,8 @@
       line-height: 1.5;
       color: #333333;
   }
+
+  /***** TITLE STYLING *****/
 
   #quote {
     margin-left: 10%;
@@ -87,7 +89,7 @@
     display: inline;
   }
 
-  section #films .step {
+  #films .step {
     text-align: center;
     /*display: inline-block;*/
   }
@@ -127,6 +129,7 @@
   	position:relative;
   	top: 1px;
     background-color: #FF00CC;
+    outline: 0;
   }
 
   #number {
@@ -151,6 +154,64 @@
     float: right;
   }
 
+  /***** CAROUSEL STYLING *****/
+  #myCarousel {
+    margin-top: 40px;
+    display: relative;
+    text-align: center;
+  }
+
+  .carousel-linked-nav,
+  .item img {
+    display: block;
+    margin: 0 auto;
+  }
+
+  .carousel-linked-nav {
+    width: 120px;
+    margin-bottom: 20px;
+  }
+
+  .carousel-control {
+    position: absolute;
+    /*top: 40%;*/
+  }
+
+  .carousel-inner {
+    height: 600px;
+    width: 800px;
+    background-color: white;
+  }
+
+  .item {
+    text-align: left;
+  }
+
+  .item img {
+    max-width: 400px;
+    width: 150%;
+    /*max-height: auto;*/
+    float: left;
+    position: relative;
+    display: inline-block;
+  }
+
+  .carousel-text {
+    float: right;
+    font-family: 'Source Serif Pro', serif;
+    font-size: 1.25em;
+    line-height: 1.5;
+    color: #333333;
+    display: inline-block;
+    position: absolute;
+    padding: 2%;
+  }
+
+  .carousel-title {
+    font-family: 'Source Serif Pro Bold';
+    font-size: 1.25em;
+  }
+
 </style>
 
 <body>
@@ -167,13 +228,13 @@
       <div class="author">Jasmine Mithani</div>
     </div class="title">
 
-    <section class="step" id="quote">
+    <div class="step" id="quote">
       &ldquo;Disney taught us that, &lsquo;when you wish upon a star, your dreams come true.&rsquo;
       Unfortunately, if your dream is to have both of your parents live to see you succeed, you&#39;re sheer out of luck.&rdquo;
       <div id="attribution">-- Marc Oromaner</div>
-    </section>
+    </div>
 
-    <section class="step">
+    <div class="step">
       <p>Bambi&#39;s mom, heartlessly shot by a hunter. Marlin watching his wife and all but one of their fish eggs be
         eaten by a barracuda. Disney movies tug at the heartstrings, but not just because they end with a warming
         happily ever after. The animation studio continues to traumatize each generation with tales of parental absence.
@@ -185,14 +246,10 @@
         Disney Animation Studio&#39;s theatrical releases, I sought to answer once and for all to what extent the stereotype
         of missing parents applied.
       </p>
-    </section>
+    </div>
 
-    <section class="step" id="films">
-      <div id="controls">
-        <!-- <button>Dead Mom</button>
-        <button>Dead Dad</button>
-        <button>Both Dead</button> -->
-      </div>
+    <div class="step" id="films">
+      <div id="controls"></div> <!-- Buttons populated by D3 -->
 
       <div class="center-wrap">
         <div id="number">
@@ -202,23 +259,69 @@
         <div id="graph"></div>
       </div>
 
-    </section>
+    </div>
 
-    <section class="step" id="missing-vs-dead">
-    </section>
+    <div class="step" id="missing-vs-dead">
+    </div>
 
-    <section class="step" id="onscreen-deaths">
-    </section>
+    <div class="step" id="onscreen-deaths">
 
-    <section iclass="step" d="plucky-orphans">
-    </section>
+      <!-- FROM https://jsfiddle.net/juddlyon/Q2TYv/10/ -->
+      <div id="carousel">
+        <div id="myCarousel" class="carousel slide">
+          <!-- Carousel items -->
+          <div class="carousel-inner">
+            <div class="active item">
+              <img src="/gifs/bambi.gif" />
+              <div class="carousel-text">
+                <div class="carousel-title"><strong>Bambi (19xx)</strong></div>
+                <div class="carousel-desc">
+                  Bambi's mother encouraged him to outrun the hunter chasing them, and while the little deer
+                  survived his mother perished from a gunshot wound.
+                </div>
+              </div>
 
-    <section iclass="step" d="gender">
-    </section>
+            </div>
+            <div class="item">
+              <img src="/gifs/atlantis.gif" />
+            </div>
+            <div class="item">
+              <img src="/gifs/brother_bear.gif" />
+            </div>
+          </div>
+          <!-- Carousel nav -->
+          <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+          <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+        </div>
 
-    <section class="step" id="era">
-    </section>
+        <!-- LINKED NAV -->
+        <ol class="carousel-linked-nav pagination">
+          <li class="active"><a href="#1">1</a></li>
+          <li><a href="#2">2</a></li>
+          <li><a href="#3">3</a></li>
+        </ol>
+      </div>
+
+    </div>
+
+    <div iclass="step" d="plucky-orphans">
+    </div>
+
+    <div iclass="step" d="gender">
+    </div>
+
+    <div class="step" id="era">
+    </div>
 
   </div class="container">
+
+  <!-- JavaScript -->
   <script type="text/javascript" src="js/part1.js"></script>
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+
+  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+  crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.0.4/js/bootstrap.min.js"></script>
+
+  <script type="text/javascript" src="js/carousel.js"></script>
 </html>
