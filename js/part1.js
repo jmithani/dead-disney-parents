@@ -13,8 +13,8 @@ var svg = d3.select("#graph")
             .attr("height", height);
 
 var buttons = [{ "name": "mom", "count": 30, "desc": "of films have a missing mother" },
-               { "name": "dad", "count": 20, "desc": "of films have a missing father"  },
-               { "name": "both", "count": 20, "desc": "of films have neither parent present" }];
+               { "name": "dad", "count": 23, "desc": "of films have a missing father"  },
+               { "name": "both", "count": 15, "desc": "of films have neither parent present" }];
 
 d3.select("#controls").selectAll("button")
   .data(buttons)
@@ -35,7 +35,7 @@ d3.select("#controls").selectAll("button")
   });
 
 /***** Reading in CSV data in order to make mice grid *****/
-d3.csv("../csv/all_films_nosequels.csv", function(data) {
+d3.csv("../csv/all_final.csv", function(data) {
 
   console.log(data);
 
@@ -100,6 +100,9 @@ function addClasses(d) {
 // Function to change the text of the sidebar
 function updateSide(d) {
   console.log("updating side");
+
+  // FUTURE @todo make this a smooth transition
+
   var elDesc = document.getElementById("description");
   var elCount = document.getElementById("count");
   elCount.innerHTML = d.count;
@@ -109,7 +112,7 @@ function updateSide(d) {
 
 // Function to update the mice color based on the button clicked
 function updateMice(d) {
-  
+
   // Right now, .active isn't mapped to anything, it's for debugging
 
   var opacity = 0.3;

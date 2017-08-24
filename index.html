@@ -5,212 +5,246 @@
   <script type="text/javascript" src="http://d3js.org/d3.v4.min.js"></script>
   <script type="text/javascript" src="https://d3js.org/d3-ease.v1.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Karla|Source+Serif+Pro" rel="stylesheet">
-  <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.0.4/css/bootstrap-combined.min.css" rel="stylesheet" >
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
   <!-- <script type="text/javascript" src="js/part1.js"></script> -->
 </head>
 
 <style>
 
-  body {
-    background-color: #FFCCFF;
-  }
+body {
+  background-color: #FFCCFF;
+}
 
-  .container {
-    margin: 5% 10% 5% 10%;
-  }
+.container {
+  margin: 5% 10% 5% 10%;
+}
 
-  .header-image {
-    text-align: center;
-  }
+.header-image {
+  text-align: center;
+}
 
-  .header-image img {
-    width: 25%;
-    height: auto;
-    /*height: %;
-    width: 75%;*/
-  }
+.header-image img {
+  width: 25%;
+  height: auto;
+  /*height: %;
+  width: 75%;*/
+}
 
-  /***** Title *****/
+/***** Title *****/
 
-  .title {
-    text-align: center;
-    color: #333333;
-    margin: 2% 5% 2% 5%;
-  }
+.title {
+  text-align: center;
+  color: #333333;
+  margin: 2% 5% 2% 5% !important;
+}
 
-  .title .article-title {
-    font-family: 'Source Serif Pro', serif;
-    font-size: 4.5em;
-  }
+.title .article-title {
+  font-family: 'Source Serif Pro', serif;
+  font-size: 4.5em;
+}
 
-  .title .article-subtitle {
-    font-family: 'Karla', 'sans serif';
-    font-size: 2em;
-  }
+.title .article-subtitle {
+  font-family: 'Karla', 'sans serif';
+  font-size: 2em;
+}
 
-  .title .author {
-    font-family: 'Source Serif Pro', serif;
-    font-size: 1.5em;
-    padding-top: 0.25em;
-  }
+.title .author {
+  font-family: 'Source Serif Pro', serif;
+  font-size: 1.5em;
+  padding-top: 0.25em;
+}
 
-  p {
-      margin-left: 5%;
-      margin-right: 5%;
-      font-family: 'Source Serif Pro', serif;
-      font-size: 1.25em;
-      line-height: 1.5;
-      color: #333333;
-  }
+p {
+  margin-left: 5%;
+  margin-right: 5%;
+  font-family: 'Source Serif Pro', serif;
+  font-size: 1.25em;
+  line-height: 1.5;
+  color: #333333;
+}
 
-  /***** TITLE STYLING *****/
+.step {
+  position: relative;
+}
 
-  #quote {
-    margin-left: 10%;
-    margin-right: 10%;
-    text-align: left;
-    font-family: 'Karla', sans-serif;
-    color: #333333;
-    font-size: 1.4em;
-    line-height: 1.5em;
-    font-style: italic;
-  }
+/***** TITLE STYLING *****/
 
-  #attribution {
-    text-align: right;
-    font-style: normal;
-    margin-right: 0;
-  }
+#quote {
+  margin-left: 10%;
+  margin-right: 10%;
+  text-align: left;
+  font-family: 'Karla', sans-serif;
+  color: #333333;
+  font-size: 1.4em;
+  line-height: 1.5em;
+  font-style: italic;
+}
 
-  /***** Films filtering graph *****/
+#attribution {
+  text-align: right;
+  font-style: normal;
+  margin-right: 0;
+}
 
-  .center-wrap {
-    text-align: center;
-    display: inline;
-  }
+/***** Films filtering graph *****/
 
-  #films .step {
-    text-align: center;
-    /*display: inline-block;*/
-  }
+.center-wrap {
+  text-align: center;
+  display: inline;
+}
 
-  #controls {
-    text-align: center;
-  }
+#films .step {
+  text-align: center;
+  /*display: inline-block;*/
+}
 
-  /* Button styling helped by http://www.bestcssbuttongenerator.com/#/5 */
-  .btn-style {
+#controls {
+  text-align: center;
+  margin: 2%;
+}
+
+/* Button styling helped by http://www.bestcssbuttongenerator.com/#/5 */
+.btn-style {
   height: 30px;
   width: 120px;
-	background-color: #777777;
-	-moz-border-radius: 4px;
-	-webkit-border-radius: 4px;
-	border-radius: 4px;
-	border: 0px solid #ffffff;
-	display: inline-block;
-	cursor: pointer;
-	color: #ffffff;
-	font-family: "Karla", sans-serif;
-	font-size: 1em;
-	padding: 6px 15px;
-	text-decoration: none;
+  background-color: #777777;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  border: 0px solid #ffffff;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: "Karla", sans-serif;
+  font-size: 1em;
+  padding: 6px 15px;
+  text-decoration: none;
   text-transform: uppercase;
-	/*text-shadow: 0px 1px 0px #b23e35;*/
+  /*text-shadow: 0px 1px 0px #b23e35;*/
   margin-left: 10px;
   margin-right: 10px;
   margin-bottom: 10px;
-  }
+}
 
-  .btn-style:hover {
-    background-color: #FF00CC;
-  }
+.btn-style:hover {
+  background-color: #FF00CC;
+}
 
-  .btn-style:focus {
-  	position:relative;
-  	top: 1px;
-    background-color: #FF00CC;
-    outline: 0;
-  }
+.btn-style:focus {
+  position:relative;
+  top: 1px;
+  background-color: #FF00CC;
+  outline: 0;
+}
 
-  #number {
-    display: inline-block;
-    float: left;
-    /*position: relative;*/
-  }
+#number {
+  display: inline-grid;
+  float: left;
+  max-width: 275px;
+  padding-right: 4%;
+  padding-top: 5%;
+}
 
-  #count {
-    font-size: 2em;
-    color: #FF00CC;
-  }
+#count {
+  font-size: 6em;
+  color: #FF00CC;
+  line-height: 1;
+}
 
-  #count, #description {
-    text-align: right;
-    display: inline;
-    font-family: "Karla", sans-serif;
-  }
+#description {
+  font-size: 1.75em;
+  margin-top: 0;
+}
 
-  #graph {
-    display: inline-block;
-    float: right;
-  }
+#count, #description {
+  text-align: right;
+  display: inline;
+  font-family: "Karla", sans-serif;
+}
 
-  /***** CAROUSEL STYLING *****/
-  #myCarousel {
-    margin-top: 40px;
-    display: relative;
-    text-align: center;
-  }
+#graph {
+  display: grid;
+}
 
-  .carousel-linked-nav,
-  .item img {
-    display: block;
-    margin: 0 auto;
-  }
+/****** CAUSE OF DEATH STYLING *****/
 
-  .carousel-linked-nav {
-    width: 120px;
-    margin-bottom: 20px;
-  }
+#cycle {
+  text-align: center;
+  margin-left: 12%;
+  margin-right: 12%;
+}
 
-  .carousel-control {
-    position: absolute;
-    /*top: 40%;*/
-  }
+.cause {
+  opacity: 0;
+  /*text-align: left;*/
+  font-size: 2.5em;
+  font-family: "Source Serif Pro", serif;
+  line-height: 1.3;
+  position: absolute;
+}
 
-  .carousel-inner {
-    height: 600px;
-    width: 800px;
-    background-color: white;
-  }
+.cause-title {
+  /*text-align: left;;*/
+  font-size: .75em;
+  font-family: "Karla", sans-serif;
+}
 
-  .item {
-    text-align: left;
-  }
+/***** CAROUSEL STYLING *****/
+#myCarousel {
+  margin-top: 40px;
+  display: relative;
+  text-align: center;
+}
 
-  .item img {
-    max-width: 400px;
-    width: 150%;
-    /*max-height: auto;*/
-    float: left;
-    position: relative;
-    display: inline-block;
-  }
+.carousel-linked-nav,
+.item img {
+  display: block;
+  margin: 0 auto;
+}
 
-  .carousel-text {
-    float: right;
-    font-family: 'Source Serif Pro', serif;
-    font-size: 1.25em;
-    line-height: 1.5;
-    color: #333333;
-    display: inline-block;
-    position: absolute;
-    padding: 2%;
-  }
+.carousel-linked-nav {
+  width: 120px;
+  margin-bottom: 20px;
+}
 
-  .carousel-title {
-    font-family: 'Source Serif Pro Bold';
-    font-size: 1.25em;
-  }
+.carousel-control {
+  position: absolute;
+  /*top: 40%;*/
+}
+
+.carousel-inner {
+  height: 600px;
+  width: 800px;
+  background-color: white;
+}
+
+.item {
+  text-align: left;
+}
+
+.item img {
+  max-width: 400px;
+  width: 150%;
+  float: left;
+  position: relative;
+  display: inline-block;
+}
+
+.carousel-text {
+  float: right;
+  font-family: 'Source Serif Pro', serif;
+  font-size: 1.25em;
+  line-height: 1.5;
+  color: #333333;
+  display: inline-block;
+  position: absolute;
+  padding: 2%;
+}
+
+.carousel-title {
+  font-family: 'Source Serif Pro Bold';
+  font-size: 1.25em;
+}
 
 </style>
 
@@ -258,56 +292,21 @@
         </div>
         <div id="graph"></div>
       </div>
-
     </div>
 
-    <div class="step" id="missing-vs-dead">
+    <div class="step" id="causes">
+      <p>How did they die?</p>
+      <div id="cycle"></div>
     </div>
 
     <div class="step" id="onscreen-deaths">
 
-      <!-- FROM https://jsfiddle.net/juddlyon/Q2TYv/10/ -->
-      <div id="carousel">
-        <div id="myCarousel" class="carousel slide">
-          <!-- Carousel items -->
-          <div class="carousel-inner">
-            <div class="active item">
-              <img src="/gifs/bambi.gif" />
-              <div class="carousel-text">
-                <div class="carousel-title"><strong>Bambi (19xx)</strong></div>
-                <div class="carousel-desc">
-                  Bambi's mother encouraged him to outrun the hunter chasing them, and while the little deer
-                  survived his mother perished from a gunshot wound.
-                </div>
-              </div>
-
-            </div>
-            <div class="item">
-              <img src="/gifs/atlantis.gif" />
-            </div>
-            <div class="item">
-              <img src="/gifs/brother_bear.gif" />
-            </div>
-          </div>
-          <!-- Carousel nav -->
-          <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-          <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
-        </div>
-
-        <!-- LINKED NAV -->
-        <ol class="carousel-linked-nav pagination">
-          <li class="active"><a href="#1">1</a></li>
-          <li><a href="#2">2</a></li>
-          <li><a href="#3">3</a></li>
-        </ol>
-      </div>
-
     </div>
 
-    <div iclass="step" d="plucky-orphans">
+    <div class="step" d="plucky-orphans">
     </div>
 
-    <div iclass="step" d="gender">
+    <div class="step" d="gender">
     </div>
 
     <div class="step" id="era">
@@ -317,11 +316,12 @@
 
   <!-- JavaScript -->
   <script type="text/javascript" src="js/part1.js"></script>
+  <script type="text/javascript" src="js/causes.js"></script>
   <script src="https://code.jquery.com/jquery-1.12.4.min.js"
 
   integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
   crossorigin="anonymous"></script>
-  <script type="text/javascript" src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.0.4/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-  <script type="text/javascript" src="js/carousel.js"></script>
-</html>
+  <!-- <script type="text/javascript" src="js/carousel.js"></script> -->
+  </html>
