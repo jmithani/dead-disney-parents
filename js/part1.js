@@ -47,7 +47,7 @@ d3.select("#controls").selectAll("button")
   });
 
 /***** Reading in CSV data in order to make mice grid *****/
-d3.csv("../csv/all_final.csv", function(data) {
+d3.csv("/csv/all_final.csv", function(data) {
 
   //console.log(data);
 
