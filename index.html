@@ -170,6 +170,24 @@ p {
   margin-bottom: 2%;
 }
 
+/* Tooltip styling */
+.tooltip {
+  font-family: 'Karla', sans-serif;
+  position: absolute;
+  text-align: left;
+  width: 250px;
+  height: 50px;
+  background-color: #FFFFFF;
+  border: 0px;
+  border-radius: 8px;
+  pointer-events: none;
+  padding: 10px;
+}
+
+.tooltip-title {
+  font-weight: bold;
+}
+
 /****** CAUSE OF DEATH STYLING *****/
 
 .cycle-wrap {
@@ -199,62 +217,12 @@ p {
   font-family: "Karla", sans-serif;
 }
 
-/***** CAROUSEL STYLING *****/
-#myCarousel {
-  margin-top: 40px;
-  display: relative;
-  text-align: center;
-}
+/***** BAR CHART STYLING *****/
 
-.carousel-linked-nav,
-.item img {
-  display: block;
-  margin: 0 auto;
-}
-
-.carousel-linked-nav {
-  width: 120px;
-  margin-bottom: 20px;
-}
-
-.carousel-control {
-  position: absolute;
-  /*top: 40%;*/
-}
-
-.carousel-inner {
-  height: 600px;
-  width: 800px;
-  background-color: white;
-}
-
-.item {
-  text-align: left;
-}
-
-.item img {
-  max-width: 400px;
-  width: 150%;
-  float: left;
+#gender {
   position: relative;
-  display: inline-block;
 }
 
-.carousel-text {
-  float: right;
-  font-family: 'Source Serif Pro', serif;
-  font-size: 1.25em;
-  line-height: 1.5;
-  color: #333333;
-  display: inline-block;
-  position: absolute;
-  padding: 2%;
-}
-
-.carousel-title {
-  font-family: 'Source Serif Pro Bold';
-  font-size: 1.25em;
-}
 
 </style>
 
@@ -300,7 +268,12 @@ p {
           <div id="count">34</div>
           <div id="description">films are missing at least one parent out of 59 total</div>
         </div>
-        <div id="graph"></div>
+        <div id="graph">
+          <div class="tooltip">
+            <div class="tooltip-title"></div>
+            <div class="tooltip-date"></div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -321,10 +294,11 @@ p {
 
     </div>
 
-    <div class="step" d="plucky-orphans">
+    <div class="step" id="plucky-orphans">
     </div>
 
-    <div class="step" d="gender">
+    <div class="step" id="gender">
+      <div id="genderBars"></div>
     </div>
 
     <div class="step" id="era">
@@ -335,6 +309,7 @@ p {
   <!-- JavaScript -->
   <script type="text/javascript" src="js/part1.js"></script>
   <script type="text/javascript" src="js/causes.js"></script>
+  <script type="text/javascript" src="js/gender.js"></script>
   <script src="https://code.jquery.com/jquery-1.12.4.min.js"
 
   integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="

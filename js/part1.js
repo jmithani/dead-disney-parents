@@ -11,6 +11,16 @@ var svg = d3.select("#graph")
             .attr("width", width)
             .attr("height", height);
 
+/***** TOOLTIPS *****/
+d3.select(".tooltip")
+   .style("opacity", 0.1);
+
+var parseDate = d3.timeParse("%d-$b-%y");
+console.log(parseDate("01-Mar-14"));
+var formatDate = d3.timeFormat("%Y");
+
+//***** Making the buttons *****/
+
 var buttons = [{ "name": "mom", "count": 30, "desc": "films have a missing mother" },
                { "name": "dad", "count": 23, "desc": "films have a missing father"  },
                { "name": "both", "count": 15, "desc": "films have neither parent present" }];
@@ -52,7 +62,8 @@ d3.csv("../csv/all_final.csv", function(data) {
     .attr("width", mouseSize)
     .attr("x", function(d) { return d.x; })
     .attr("y", function(d) { return d.y; })
-    .each(addClasses);
+    .each(addClasses)
+    .each(makeTooltip);
 });
 
 /***** DATA FORMATTING FUNCTIONS *****/
@@ -89,8 +100,8 @@ function addClasses(d) {
   }
 
   if (d.mom == true && d.dad == true) {
-    console.log(d.title);
-    d3.select(this).classed("both", true);
+    //console.log(d.title);
+    d3.select(this).classed("both", true).classed("mom-dead", true).classed("dad-dead", true);
   }
 }
 
@@ -116,7 +127,7 @@ function updateMice(d) {
 
   var opacity = 0.3;
   var duration = 300;
-  console.log("updating mice");
+  //console.log("updating mice");
 
   d3.selectAll(".mouse")
     .classed("active", false)
@@ -127,7 +138,7 @@ function updateMice(d) {
 
   switch(d.name) {
     case "both":
-      console.log("matched both");
+      //console.log("matched both");
       d3.selectAll(".both")
         .classed("active", true)
         .transition()
@@ -137,7 +148,7 @@ function updateMice(d) {
       break;
 
     case "mom":
-      console.log("matched mom");
+      //console.log("matched mom");
       d3.selectAll(".mom-dead")
         .classed("active", true)
         .transition()
@@ -147,7 +158,7 @@ function updateMice(d) {
       break;
 
     case "dad":
-      console.log("matched dad");
+      //console.log("matched dad");
       d3.selectAll(".dad-dead")
         .classed("active", true)
         .transition()
@@ -156,4 +167,35 @@ function updateMice(d) {
         .attr("href", "/img/mouse-pink.svg");
       break;
   }
+}
+
+/***** TOOLTIP FUNCTION *****/
+function makeTooltip(d) {
+
+  console.log(d.x)
+
+  d3.select(this)
+    .on("mouseover", function(d) {
+      d3.select(".tooltip")
+        .transition()
+        .duration(200)
+        .style("opacity", 0.9)
+        .style("left", d3.mouse.x + "px")
+        .style("top", (d3.mouse.y + 20) + "px" );
+
+        d3.select(".tooltip-title")
+          .text(d.title);
+
+        d3.select(".tooltip-date")
+          .text(d.release_date);
+
+
+    })
+    .on("mouseout", function(d) {
+      d3.select(".tooltip")
+        .transition()
+        .duration(200)
+        .style("opacity", 0.1);
+    });
+
 }
