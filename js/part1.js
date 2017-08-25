@@ -2,6 +2,7 @@
 var mouseSize = 50;
 var mousePadding = 10;
 var rowLen = 10; // how many mice per row
+var widthTooltip = 250;
 
 var width = (mouseSize + mousePadding) * rowLen;
 var height = (mouseSize + mousePadding) * 6; // i am doing this only because i know there will be < 10 rows
@@ -15,8 +16,10 @@ var svg = d3.select("#graph")
 d3.select(".tooltip")
    .style("opacity", 0.1);
 
-var parseDate = d3.timeParse("%d-$b-%y");
-console.log(parseDate("01-Mar-14"));
+//var timeScale = d3.scaleTime.domain(new Date(1930, 0, 1), new Date(2018, 0, 1));
+var parseDate = d3.timeParse("%d-%b-%y");
+//console.log(parseDate("01-Mar-69"));
+
 var formatDate = d3.timeFormat("%Y");
 
 //***** Making the buttons *****/
@@ -46,7 +49,7 @@ d3.select("#controls").selectAll("button")
 /***** Reading in CSV data in order to make mice grid *****/
 d3.csv("../csv/all_final.csv", function(data) {
 
-  console.log(data);
+  //console.log(data);
 
   // Refining data into an object
   var miceData = makeObjects(data);
@@ -170,9 +173,20 @@ function updateMice(d) {
 }
 
 /***** TOOLTIP FUNCTION *****/
+
+function adjustDate(date) {
+  console.log(date.getFullYear());
+  if (date.getFullYear() > 2017) {
+    date.setFullYear(date.getFullYear() - 100);
+  }
+  return date;
+}
+
 function makeTooltip(d) {
 
-  console.log(d.x)
+  var xPosition = parseFloat(d3.select(this).attr("x")) + widthTooltip * (1.5); // this is guesstimation rn
+  var yPosition = parseFloat(d3.select(this).attr("y")) + mouseSize*2;
+  console.log(xPosition + " " + yPosition);
 
   d3.select(this)
     .on("mouseover", function(d) {
@@ -180,16 +194,15 @@ function makeTooltip(d) {
         .transition()
         .duration(200)
         .style("opacity", 0.9)
-        .style("left", d3.mouse.x + "px")
-        .style("top", (d3.mouse.y + 20) + "px" );
+        .style("left", xPosition + "px")
+        .style("top", yPosition + "px" );
 
         d3.select(".tooltip-title")
           .text(d.title);
-
+        // console.log(d.release_date);
+        console.log(parseDate(d.release_date));
         d3.select(".tooltip-date")
-          .text(d.release_date);
-
-
+          .text(formatDate(adjustDate(parseDate(d.release_date))));
     })
     .on("mouseout", function(d) {
       d3.select(".tooltip")
