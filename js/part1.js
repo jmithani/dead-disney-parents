@@ -60,7 +60,7 @@ d3.csv("csv/all_final.csv", function(data) {
     .enter()
     .append("image")
     .classed("mouse", true)
-    .attr("href", "/img/mouse.svg")
+    .attr("href", "img/mouse.svg")
     .attr("height", mouseSize)
     .attr("width", mouseSize)
     .attr("x", function(d) { return d.x; })
@@ -136,7 +136,7 @@ function updateMice(d) {
     .classed("active", false)
     .transition()
     .duration(100)
-    .attr("href", "/img/mouse.svg")
+    .attr("href", "img/mouse.svg")
     .attr("opacity", opacity);
 
   switch(d.name) {
@@ -147,7 +147,7 @@ function updateMice(d) {
         .transition()
         .duration(duration)
         .attr("opacity", 1)
-        .attr("href", "/img/mouse-pink.svg");
+        .attr("href", "img/mouse-pink.svg");
       break;
 
     case "mom":
@@ -157,7 +157,7 @@ function updateMice(d) {
         .transition()
         .duration(duration)
         .attr("opacity", 1)
-        .attr("href", "/img/mouse-pink.svg");
+        .attr("href", "img/mouse-pink.svg");
       break;
 
     case "dad":
@@ -167,7 +167,7 @@ function updateMice(d) {
         .transition()
         .duration(duration)
         .attr("opacity", 1)
-        .attr("href", "/img/mouse-pink.svg");
+        .attr("href", "img/mouse-pink.svg");
       break;
   }
 }
