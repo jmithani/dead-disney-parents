@@ -190,9 +190,10 @@ p {
 /****** CAUSE OF DEATH STYLING *****/
 
 .cycle-wrap {
+  margin-top: 50px;
   text-align: center;
   position: relative;
-  height: 200px;
+  height: 150px;
   width: auto;
 }
 
@@ -206,6 +207,7 @@ p {
   font-size: 2.5em;
   font-family: "Source Serif Pro", serif;
   line-height: 1.3;
+  color: #FF00CC;
   /*max-width: 600px;*/
   /*position: absolute;*/
 }
@@ -214,6 +216,7 @@ p {
   /*text-align: left;;*/
   font-size: .75em;
   font-family: "Karla", sans-serif;
+  color: #333333;
 }
 
 /***** BAR CHART STYLING *****/
@@ -221,7 +224,26 @@ p {
 #gender {
   position: relative;
 }
+b {
+  display: inline;
+  color: green;
+}
 
+i {
+  display: inline;
+  color: purple;
+  font-style: normal;
+}
+
+#gender .step p b {
+  display: inline;
+  color: green;
+}
+
+#gender .step p i {
+  display: inline;
+  color: purple;
+}
 
 </style>
 
@@ -242,7 +264,7 @@ p {
     <div class="step" id="quote">
       &ldquo;Disney taught us that, &lsquo;when you wish upon a star, your dreams come true.&rsquo;
       Unfortunately, if your dream is to have both of your parents live to see you succeed, you&#39;re sheer out of luck.&rdquo;
-      <div id="attribution">-- Marc Oromaner</div>
+      <div id="attribution">&mdash; Marc Oromaner</div>
     </div>
 
     <div class="step">
@@ -297,6 +319,11 @@ p {
     </div>
 
     <div class="step" id="gender">
+      <p>A naive analysis comparing the gender of characters to which parent they are missing shows,
+        first of all, that many more male characters are without parents. However, these need to be
+        normalized by how many films featured a main <b>male</b> or <i>female</i> character; it&#39;s possible that the
+        numbers for female characters could be so low because there are few films with female main
+        characters overall. For now, here is a raw aggregation of parent death sorted by gender of the child.</p>
       <div id="genderBars"></div>
     </div>
 

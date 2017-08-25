@@ -53,7 +53,7 @@ d3.select("#cycle")
         // .style("color", "red")
         .style("opacity", 1)
       .transition()
-        .delay(4000)
+        .delay(5000)
         .on("start", function() {
           index = ++i % numCauses;
           cycle();

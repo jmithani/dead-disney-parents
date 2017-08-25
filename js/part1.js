@@ -175,7 +175,7 @@ function updateMice(d) {
 /***** TOOLTIP FUNCTION *****/
 
 function adjustDate(date) {
-  console.log(date.getFullYear());
+  //console.log(date.getFullYear());
   if (date.getFullYear() > 2017) {
     date.setFullYear(date.getFullYear() - 100);
   }
@@ -186,7 +186,7 @@ function makeTooltip(d) {
 
   var xPosition = parseFloat(d3.select(this).attr("x")) + widthTooltip * (1.5); // this is guesstimation rn
   var yPosition = parseFloat(d3.select(this).attr("y")) + mouseSize*2;
-  console.log(xPosition + " " + yPosition);
+  //console.log(xPosition + " " + yPosition);
 
   d3.select(this)
     .on("mouseover", function(d) {

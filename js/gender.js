@@ -5,12 +5,12 @@ var genderData = [ { "gender": "male", "parent": "dad", "total": 19 },
                    { "gender": "male", "parent": "both parent", "total": 7 },
                    { "gender": "female", "parent": "both parent", "total": 3 }];
 
-var barHeight = 20;
+var barHeight = 40;
 var maxBarLength = 500;
 var padding = 10;
 var barsNum = genderData.length;
 
-var width = maxBarLength + (padding * 2);
+var width = maxBarLength * 2;
 var height = ((barsNum + 1) * (barHeight + padding)) + (padding * 2);
 
 var bars = d3.select("#genderBars")
@@ -28,7 +28,6 @@ bars.selectAll("rect")
     .data(genderData)
     .enter()
     .append("rect")
-    .append("text")
     .attr("height", barHeight)
     .attr("width", function(d) {
       //console.log(barLenScale(d.total));
@@ -44,9 +43,19 @@ bars.selectAll("rect")
     });
 
 bars.selectAll("text")
+  .data(genderData)
+  .enter()
   .append("text")
+  .attr("font-family", "Karla")
+  .attr("font-size", (barHeight / 2))
+  .attr("x", function(d) {
+    return (barLenScale(d.total) + padding)
+  })
+  .attr("y", function(d, i) {
+    return (i * (barHeight + padding) + 5 + (barHeight/2))
+  })
   .text(function(d) {
       //console.log("this is d");
       //console.log(d);
-      return (d.total + " " + d.gender + " are missing " + d.parent + "s");
+      return (d.total + " " + d.gender + " characters are missing " + d.parent + "s");
     });
