@@ -17,6 +17,12 @@ body {
   height: 100%;
 }
 
+/*@media (max-width: 980px) {
+  svg {
+    width: 200%;
+  }
+}*/
+
 .title-container {
   margin: 5% 15% 5% 15%;
 }
@@ -118,8 +124,8 @@ p {
 }
 
 #films {
-  margin-top: 7%;
-  margin-bottom: 5%;
+  margin-top: 3%;
+  margin-bottom: 3%;
 }
 
 #controls {
@@ -179,7 +185,8 @@ p {
   margin-top: 0;
 }
 
-#count, #description {
+#count,
+#description {
   text-align: right;
   display: inline;
   font-family: "Karla", sans-serif;
@@ -187,7 +194,7 @@ p {
 
 #graph {
   display: grid;
-  margin-bottom: 2%;
+  /*margin-bottom: 2%;*/
 }
 
 /* Tooltip styling */
@@ -264,6 +271,15 @@ i {
 #gender .step p i {
   display: inline;
   color: purple;
+}
+
+#gender .values,
+#gender .labels {
+  font-family: Karla;
+}
+
+#gender .labels {
+  text-transform: uppercase;
 }
 
 </style>

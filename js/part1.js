@@ -1,16 +1,16 @@
 /***** Global variables *****/
 var mouseSize = 50;
 var mousePadding = 10;
-var rowLen = 10; // how many mice per row
+var rowLen = 8; // how many mice per row
 var widthTooltip = 250;
 
 var width = (mouseSize + mousePadding) * rowLen;
-var height = (mouseSize + mousePadding) * 6; // i am doing this only because i know there will be < 10 rows
+// var height = (mouseSize + mousePadding) * 11; // this is hardcoded... @todo change with SASS?
 
 var svg = d3.select("#graph")
             .append("svg")
             .attr("width", width)
-            .attr("height", height);
+            .attr("height", 0); // will fill it later depending on number of mice
 
 /***** TOOLTIPS *****/
 d3.select(".tooltip")
@@ -49,11 +49,15 @@ d3.select("#controls").selectAll("button")
 /***** Reading in CSV data in order to make mice grid *****/
 d3.csv("csv/all_final.csv", function(data) {
 
-  //console.log(data);
-
   // Refining data into an object
   var miceData = makeObjects(data);
   //console.log(miceData);
+
+  // Changing height of SVG based on number of mice
+  svg.attr("height", function(d, i) {
+    console.log(miceData.length);
+    return (mouseSize + mousePadding) * (miceData.length / rowLen) + (mouseSize/2); });
+    // (mouseSize/2) is necessary to show the bottom half of the last row of mice
 
   svg.selectAll(".mouse")
     .data(miceData)
