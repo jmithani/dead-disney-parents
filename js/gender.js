@@ -1,9 +1,11 @@
 var genderData = [ { "gender": "male", "parent": "dad", "total": 19 },
-                   { "gender": "female", "parent": "dad", "total": 5 },
                    { "gender": "male", "parent": "mom", "total": 19 },
-                   { "gender": "female", "parent": "mom", "total": 12 },
                    { "gender": "male", "parent": "both parent", "total": 7 },
+                   { "gender": "female", "parent": "mom", "total": 12 },
+                   { "gender": "female", "parent": "dad", "total": 5 },
                    { "gender": "female", "parent": "both parent", "total": 3 }];
+
+var labels = [ "Missing a Mom", "Missing a Dad", "Missing Both Parents"];
 
 var barHeight = 40;
 var maxBarLength = 500;
@@ -32,8 +34,14 @@ bars.selectAll("rect")
     .attr("width", function(d) {
       //console.log(barLenScale(d.total));
       return barLenScale(d.total)})
-    .attr("x", 0)
-    .attr("y", function(d, i) { return (i * (barHeight + padding))})
+    .attr("x", function(d) {
+      if (d.gender == "female") {
+        return ((width/2) - barLenScale(d.total));
+      } else {
+        return (width/2);
+      }
+    })
+    .attr("y", function(d, i) { return (barHeight + (i % 3) * (barHeight * 2))})
     .attr("fill", function(d) {
       if (d.gender == "female") {
         return "purple";
@@ -42,20 +50,36 @@ bars.selectAll("rect")
       }
     });
 
-bars.selectAll("text")
-  .data(genderData)
+bars.selectAll(".values")
+    .data(genderData)
+    .enter()
+    .classed("values", true)
+    .append("text")
+    .attr("font-family", "Karla")
+    .attr("color", "white")
+    .attr("font-size", barHeight/2)
+    .attr("x", function(d) {
+      if (d.gender == "female") {
+        return ((width/2) - barLenScale(d.total) + padding);
+      } else {
+        return ((width/2) + barLenScale(d.total) - padding);
+      }
+    })
+    .attr("text", function(d) { return d.total; });
+
+// Drawing labels for the pyramid chart
+bars.selectAll(".labels")
+  .data(labels)
   .enter()
   .append("text")
+  .classed("labels", true)
   .attr("font-family", "Karla")
+  .attr("text-transform", "uppercase")
+  .attr("color", "white")
   .attr("font-size", (barHeight / 2))
   .attr("x", function(d) {
-    return (barLenScale(d.total) + padding)
+    console.log(d.length);
+    return (width/2) - (d.length/2 * (barHeight/4) +5); })
+  .attr("y", function(d, i) { return (barHeight + (i % 3) * (barHeight * 2) - padding);
   })
-  .attr("y", function(d, i) {
-    return (i * (barHeight + padding) + 5 + (barHeight/2))
-  })
-  .text(function(d) {
-      //console.log("this is d");
-      //console.log(d);
-      return (d.total + " " + d.gender + " characters are missing " + d.parent + "s");
-    });
+  .text(function(d) { return d; });

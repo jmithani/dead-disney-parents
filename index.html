@@ -17,8 +17,16 @@ body {
   height: 100%;
 }
 
+.title-container {
+  margin: 5% 15% 5% 15%;
+}
+
 .container {
-  margin: 10% 20% 5% 20%;
+  margin: 3% 20% 5% 20%;
+}
+
+.quote-container {
+  margin: 2% 15% 2% 15%;
 }
 
 .header-image {
@@ -26,7 +34,7 @@ body {
 }
 
 .header-image img {
-  width: 35%;
+  width: 25%;
   height: auto;
   /*height: %;
   width: 75%;*/
@@ -42,18 +50,21 @@ body {
 
 .title .article-title {
   font-family: 'Source Serif Pro', serif;
-  font-size: 4.5em;
+  font-size: 6em;
+  margin: 1%;
 }
 
 .title .article-subtitle {
   font-family: 'Karla', 'sans serif';
-  font-size: 2em;
+  font-size: 1.5em;
+  margin: 0 10% 1% 10%;
 }
 
 .title .author {
-  font-family: 'Source Serif Pro', serif;
-  font-size: 1.5em;
-  padding-top: 0.25em;
+  font-family: 'Karla', sans-serif;
+  font-size: 1.25em;
+  /*padding-top: 0.25em;*/
+  margin: 2%;
 }
 
 p {
@@ -72,14 +83,19 @@ p {
 /***** TITLE STYLING *****/
 
 #quote {
-  margin-left: 10%;
-  margin-right: 10%;
+  /*margin-left: 10%;
+  margin-right: 10%;*/
+  margin-top: 5%;
   text-align: left;
   font-family: 'Karla', sans-serif;
   color: #333333;
-  font-size: 1.4em;
-  line-height: 1.5em;
+  font-size: 2em;
+  line-height: 1.5;
   font-style: italic;
+}
+
+#quote b {
+  color: #FF00CC;
 }
 
 #attribution {
@@ -99,6 +115,11 @@ p {
 #films .step {
   text-align: center;
   /*display: inline-block;*/
+}
+
+#films {
+  margin-top: 7%;
+  margin-bottom: 5%;
 }
 
 #controls {
@@ -248,25 +269,30 @@ i {
 </style>
 
 <body>
-  <div class="container"> <!-- 10% margins for entire project -->
-
-    <div class="header-image">
-      <img src="mice.png"></img>
-    </div>
+  <div class="title-container"> <!-- 10% margins for entire project -->
 
     <div class="title">
       <div class="article-title">Dead Disney Parents</div>
       <div class="article-subtitle">Exploring the high rate of parental demise and unexplained absence in Disney&#39;s animated films</div>
-      <strong>_________________________________________</strong>
-      <div class="author">Jasmine Mithani</div>
+      <strong>___________________________________________________________</strong>
+      <div class="author">A visual essay by <br /> Jasmine Mithani</div>
     </div class="title">
+  </div>
+
+  <div class="header-image">
+    <img src="mice.png"></img>
+  </div>
+
+  <div class="quote-container">
 
     <div class="step" id="quote">
       &ldquo;Disney taught us that, &lsquo;when you wish upon a star, your dreams come true.&rsquo;
-      Unfortunately, if your dream is to have both of your parents live to see you succeed, you&#39;re sheer out of luck.&rdquo;
+      Unfortunately, if your dream is to have both of your parents live to see you succeed, <b>you&#39;re sheer out of luck.</b>
       <div id="attribution">&mdash; Marc Oromaner</div>
     </div>
+  </div>
 
+<div class="container">
     <div class="step">
       <p>Bambi&#39;s mom, heartlessly shot by a hunter. Marlin watching his wife and all but one of their fish eggs be
         eaten by a barracuda. Disney movies tug at the heartstrings, but not just because they end with a warming
