@@ -51,7 +51,6 @@ d3.csv("csv/all_final.csv", function(data) {
 
   // Refining data into an object
   var miceData = makeObjects(data);
-  //console.log(miceData);
 
   // Changing height of SVG based on number of mice
   svg.attr("height", function(d, i) {
@@ -77,7 +76,6 @@ d3.csv("csv/all_final.csv", function(data) {
 
 // Function to format raw data set into objects
 function makeObjects(dataset) {
-  //console.log(dataset);
 
   return dataset.map(function(d, i) {
     // keeping date as a string right now, d.release_date
@@ -95,20 +93,16 @@ function makeObjects(dataset) {
 
 // Function to add classes based on data object
 function addClasses(d) {
-  //console.log(this);
   if (d.mom == true) {
-    // console.log("mom true");
     d3.select(this).classed("mom-dead", true);
   }
 
   if (d.dad == true) {
-    // console.log("dad true");
     d3.select(this).classed("dad-dead", true);
   }
 
   if (d.mom == true && d.dad == true) {
-    //console.log(d.title);
-    d3.select(this).classed("both", true).classed("mom-dead", true).classed("dad-dead", true);
+    d3.select(this).classed("both", true);
   }
 }
 
@@ -134,38 +128,55 @@ function updateMice(d) {
 
   var opacity = 0.3;
   var duration = 300;
-  //console.log("updating mice");
 
-  d3.selectAll(".mouse")
-    .classed("active", false)
-    .transition()
-    .duration(100)
-    .attr("href", "img/mouse.svg")
-    .attr("opacity", opacity);
+  // d3.selectAll(".mouse")
+  //   .classed("active", false)
+  //   // .transition()
+  //   // .duration(100)
+  //   // .attr("href", "img/mouse.svg")
+  //   .attr("opacity", opacity);
 
   switch(d.name) {
     case "both":
-      //console.log("matched both");
-      d3.selectAll(".both")
-        .classed("active", true)
-        .transition()
-        .duration(duration)
-        .attr("opacity", 1)
-        .attr("href", "img/mouse-pink.svg");
-      break;
-
-    case "mom":
-      //console.log("matched mom");
       d3.selectAll(".mom-dead")
         .classed("active", true)
         .transition()
         .duration(duration)
         .attr("opacity", 1)
         .attr("href", "img/mouse-pink.svg");
+
+        d3.selectAll(".dad-dead")
+          .classed("active", true)
+          .transition()
+          .duration(duration)
+          .attr("opacity", 1)
+          .attr("href", "img/mouse-pink.svg");
+      break;
+
+    case "mom":
+      d3.selectAll(".dad-dead")
+        .classed("active", false)
+        .transition()
+        .duration(duration)
+        .attr("opacity", 1)
+        .attr("href", "img/mouse.svg");
+
+        d3.selectAll(".mom-dead")
+          .classed("active", true)
+          .transition()
+          .duration(duration)
+          .attr("opacity", 1)
+          .attr("href", "img/mouse-pink.svg");
       break;
 
     case "dad":
-      //console.log("matched dad");
+      d3.selectAll(".mom-dead")
+        .classed("active", true)
+        .transition()
+        .duration(duration)
+        .attr("opacity", 1)
+        .attr("href", "img/mouse.svg");
+
       d3.selectAll(".dad-dead")
         .classed("active", true)
         .transition()
@@ -179,7 +190,6 @@ function updateMice(d) {
 /***** TOOLTIP FUNCTION *****/
 
 function adjustDate(date) {
-  //console.log(date.getFullYear());
   if (date.getFullYear() > 2017) {
     date.setFullYear(date.getFullYear() - 100);
   }
@@ -203,7 +213,6 @@ function makeTooltip(d) {
 
         d3.select(".tooltip-title")
           .text(d.title);
-        // console.log(d.release_date);
         console.log(parseDate(d.release_date));
         d3.select(".tooltip-date")
           .text(formatDate(adjustDate(parseDate(d.release_date))));
